@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Statistik Online</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Kalkulator Statistik Online</h1>
+            <p>Hitung mean, median, standar deviasi, persentil dan visualisasikan data Anda</p>
+        </div>
+
+        <div class="main-content">
+            <div class="input-section">
+                <h2>Input Data</h2>
+                <div class="input-group">
+                    <label for="dataInput">Masukkan Data Angka:</label>
+                    <textarea id="dataInput" placeholder="Masukkan angka dipisahkan dengan koma, spasi, atau baris baru&#10;Contoh: 1, 2, 3, 4, 5&#10;atau&#10;1 2 3 4 5&#10;atau satu angka per baris"></textarea>
+                    <div class="input-info">Pisahkan angka dengan koma, spasi, atau baris baru</div>
+                </div>
+                <div class="buttons">
+                    <button onclick="calculateStats()">Hitung Statistik</button>
+                    <button onclick="clearData()" class="clear-btn">Hapus Data</button>
+                </div>
+                <div id="errorMessage"></div>
+            </div>
+
+            <div class="results-section">
+                <h2>Hasil Statistik</h2>
+                <div class="stats-grid" id="statsGrid">
+                    <div class="stat-card">
+                        <div class="stat-label">Jumlah Data</div>
+                        <div class="stat-value" id="count">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Mean</div>
+                        <div class="stat-value" id="mean">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Median</div>
+                        <div class="stat-value" id="median">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Modus</div>
+                        <div class="stat-value" id="mode">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Minimum</div>
+                        <div class="stat-value" id="min">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Maksimum</div>
+                        <div class="stat-value" id="max">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Range</div>
+                        <div class="stat-value" id="range">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Standar Deviasi</div>
+                        <div class="stat-value" id="stddev">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Varians</div>
+                        <div class="stat-value" id="variance">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="percentiles-section">
+                <h3>🎯 Persentil</h3>
+                <div class="percentiles-grid" id="percentilesGrid">
+                    <!-- Persentil akan diisi oleh JavaScript -->
+                </div>
+            </div>
+
+            <div class="charts-section">
+                <h3>📈 Visualisasi Data</h3>
+                <div class="charts-container">
+                    <div class="chart-wrapper">
+                        <div class="chart-title">Histogram Frekuensi</div>
+                        <canvas id="barChart"></canvas>
+                    </div>
+                    <div class="chart-wrapper">
+                        <div class="chart-title">Distribusi Data</div>
+                        <canvas id="pieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
