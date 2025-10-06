@@ -1,7 +1,3 @@
-// Global Variables
-let barChart = null;
-let pieChart = null;
-
 // Parse input data from various formats
 function parseData(input) {
     if (!input.trim()) return [];
@@ -156,73 +152,6 @@ function createHistogram(data) {
                     ticks: {
                         stepSize: 1
                     }
-                }
-            }
-        }
-    });
-}
-
-// Create pie chart for quartile distribution
-function createPieChart(data) {
-    const canvas = document.getElementById('pieChart');
-    const ctx = canvas.getContext('2d');
-    
-    if (pieChart) {
-        pieChart.destroy();
-    }
-    
-    // Group data by quartiles
-    const sorted = [...data].sort((a, b) => a - b);
-    const n = sorted.length;
-    
-    const q1Index = Math.floor(n * 0.25);
-    const q2Index = Math.floor(n * 0.5);
-    const q3Index = Math.floor(n * 0.75);
-    
-    const q1 = sorted[q1Index];
-    const q2 = sorted[q2Index];
-    const q3 = sorted[q3Index];
-    
-    let quartile1 = 0, quartile2 = 0, quartile3 = 0, quartile4 = 0;
-    
-    data.forEach(value => {
-        if (value <= q1) quartile1++;
-        else if (value <= q2) quartile2++;
-        else if (value <= q3) quartile3++;
-        else quartile4++;
-    });
-    
-    pieChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: [
-                `Q1 (≤${q1.toFixed(1)})`,
-                `Q2 (≤${q2.toFixed(1)})`,
-                `Q3 (≤${q3.toFixed(1)})`,
-                `Q4 (>${q3.toFixed(1)})`
-            ],
-            datasets: [{
-                data: [quartile1, quartile2, quartile3, quartile4],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(54, 162, 235, 0.8)',
-                    'rgba(255, 205, 86, 0.8)',
-                    'rgba(75, 192, 192, 0.8)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 205, 86, 1)',
-                    'rgba(75, 192, 192, 1)'
-                ],
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'bottom'
                 }
             }
         }
