@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background:#4076a6;
     min-height: 100vh;
     padding: 20px;
 }
@@ -270,4 +270,5 @@ button:hover {
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
 }
